@@ -1,0 +1,9 @@
+name: Set Global Variables
+
+runs:
+  using: composite
+
+  steps:
+    - name: Set Global Variables
+      shell: bash
+      run: ./run_script_globals.sh
