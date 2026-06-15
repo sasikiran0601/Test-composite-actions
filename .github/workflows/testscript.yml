@@ -18,6 +18,9 @@ jobs:
 
       - name: Set up build env
         uses: sasikiran0601/Setup-Python-and-Node-Env@v1
+        with:
+           pythonVersion: 3.10
+           nodejsVerison: 18
 
       - name: Install dependencies
         run: npm install
