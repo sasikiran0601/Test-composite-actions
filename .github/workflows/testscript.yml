@@ -1,0 +1,35 @@
+name: Build Angular App
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-angular:
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: ci-${{ github.workflow }}
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up build env
+        uses: sasikiran0601/Setup-Python-and-Node-Env@v1
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Sleep
+        run: sleep 10
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: dist
